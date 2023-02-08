@@ -38,6 +38,8 @@
             ],
             "styles": [
               "node_modules/@valtimo/user-interface/assets/design-tokens.css",
+              "node_modules/@valtimo/components/assets/css/carbon.scss",
+              "node_modules/@valtimo/components/assets/css/carbon-beagle-compatibility.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/@mdi/font/css/materialdesignicons.css",
@@ -50,12 +52,9 @@
               "node_modules/dmn-js/dist/assets/dmn-js-drd.css",
               "node_modules/dmn-js/dist/assets/dmn-js-literal-expression.css",
               "node_modules/dmn-js/dist/assets/dmn-js-shared.css",
-              "node_modules/dmn-js/dist/assets/dmn-font/css/animation.css",
               "node_modules/dmn-js/dist/assets/dmn-font/css/dmn.css",
               "node_modules/dmn-js/dist/assets/dmn-font/css/dmn-embedded.css",
               "node_modules/dmn-js/dist/assets/dmn-font/css/dmn-codes.css",
-              "node_modules/dmn-js/dist/assets/dmn-font/css/dmn-ie7.css",
-              "node_modules/dmn-js/dist/assets/dmn-font/css/dmn-ie7-codes.css",
               "node_modules/bpmn-js/dist/assets/diagram-js.css",
               "node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn.css",
               "node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css",
@@ -128,6 +127,5 @@
         }
       }
     }
-  },
-  "defaultProject": "valtimo-frontend"
+  }
 }
