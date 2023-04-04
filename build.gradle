@@ -1,0 +1,65 @@
+ext {
+  tag_version = findProperty("VERSION")
+  dockerRepositoryName = findProperty("DOCKER_REPO_NAME")
+  dockerHostname = findProperty("DOCKER_HOSTNAME")
+}
+
+//FUNCTIONS
+def cleanTags() {
+  "docker rmi -f ${dockerHostname}/${dockerRepositoryName}:${tag_version}".execute()
+  println "Removed docker images"
+}
+
+// TASKS
+task copyDockerfileToDeploymentContext(type: Copy) {
+  from '.'
+  into 'deployment'
+  include 'Dockerfile'
+
+  outputs.files file('deployment/Dockerfile')
+}
+
+task copyHttpdRewriteFileToDeploymentDir(type: Copy) {
+  from 'conf'
+  into 'deployment'
+
+  include('nginx.conf')
+}
+
+task copyDockerFiles(dependsOn: [copyHttpdRewriteFileToDeploymentDir, copyDockerfileToDeploymentContext]) {
+}
+
+task buildArtifacts(type: NpmTask, dependsOn: [ copyDockerFiles, npm_install]) {
+  ext.resolvedEnv = (project.hasProperty('env')) ? env : 'test'
+  def buildTask = "build"
+  if (ext.resolvedEnv.equalsIgnoreCase("test")) {
+    buildTask = "buildTest"
+  } else if (ext.resolvedEnv.equalsIgnoreCase("acceptance")) {
+    buildTask = "buildAcc"
+  }
+  println "Using buildtask : ${buildTask}"
+  args = ['run', buildTask]
+}
+
+task runDockerBuild(type: Exec, dependsOn: [copyDockerfileToDeploymentContext]) {
+
+  inputs.file(new File("deployment/Dockerfile"))
+  inputs.file(new File("deployment/nginx.conf"))
+
+  outputs.upToDateWhen {
+    // let execution of this task depend only on the input
+    return true
+  }
+
+  commandLine 'docker', 'build', '--no-cache', '-t', "${dockerHostname}/${dockerRepositoryName}:${tag_version}", '-f', "deployment${File.separator}Dockerfile", 'deployment'
+}
+
+task pushImage(type: Exec, dependsOn: [runDockerBuild]) {
+
+  commandLine 'docker', 'push', "${dockerHostname}/${dockerRepositoryName}:${tag_version}"
+
+  doLast {
+    cleanTags()
+  }
+}
+
