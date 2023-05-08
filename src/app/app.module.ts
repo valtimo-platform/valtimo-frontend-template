@@ -25,7 +25,6 @@ import {
   DossierModule,
 } from '@valtimo/dossier';
 import {ProcessModule} from '@valtimo/process';
-import {ViewConfiguratorModule} from '@valtimo/view-configurator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContextModule} from '@valtimo/context';
 import {DashboardModule} from '@valtimo/dashboard';
@@ -85,7 +84,6 @@ export function tabsFactory() {
     ChoicefieldModule,
     DossierModule.forRoot(tabsFactory),
     ProcessModule,
-    ViewConfiguratorModule,
     BpmnJsDiagramModule,
     FormsModule,
     ReactiveFormsModule,
