@@ -54,7 +54,8 @@ import {PluginManagementModule} from '@valtimo/plugin-management';
 import {PLUGINS_TOKEN} from '@valtimo/plugin';
 import {DigitaalklantdossierPluginModule} from './plugin/digitaalklantdossier/digitaalklantdossier-plugin.module';
 import {digitaalKlantDossierPluginSpecification} from './plugin/digitaalklantdossier/digitaalklantdossier.plugin.specification';
-
+import {SamplePluginModule} from './plugin/sample/sample-plugin.module';
+import {samplePluginSpecification} from './plugin/sample/sample.plugin.specification';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -119,12 +120,14 @@ export function tabsFactory() {
         deps: [HttpBackend, ConfigService]
       }
     }),
-    DigitaalklantdossierPluginModule
+    DigitaalklantdossierPluginModule,
+    SamplePluginModule
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
     useValue: [
       digitaalKlantDossierPluginSpecification,
+      samplePluginSpecification
     ]
   }],
   bootstrap: [AppComponent]
