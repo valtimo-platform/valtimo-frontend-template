@@ -1,6 +1,7 @@
 import {PluginSpecification} from '@valtimo/plugin';
 import {SamplePluginConfigurationComponent} from './components/sample-plugin-configuration.component';
 import {SAMPLE_PLUGIN_LOGO_BASE64} from './assets';
+import {SampleActionConfigurationComponent} from './components/sample-action-configuration.component';
 
 const samplePluginSpecification: PluginSpecification = {
   /*
@@ -14,6 +15,9 @@ const samplePluginSpecification: PluginSpecification = {
   pluginConfigurationComponent: SamplePluginConfigurationComponent,
   // Points to a Base64 encoded string, which contains the logo of the plugin.
   pluginLogoBase64: SAMPLE_PLUGIN_LOGO_BASE64,
+  functionConfigurationComponents: {
+    'sample-action': SampleActionConfigurationComponent,
+  },
   /*
   For each language key an implementation supports, translation keys with a translation are provided below.
   These can then be used in configuration components using the pluginTranslate pipe or the PluginTranslationService.

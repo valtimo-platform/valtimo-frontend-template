@@ -6,4 +6,8 @@ interface Config extends PluginConfigurationData {
   password: string;
 }
 
+export interface SampleActionConfig {
+  sampleString: string;
+}
+
 export {Config};
