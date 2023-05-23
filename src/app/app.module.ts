@@ -52,9 +52,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {ConnectorManagementModule} from '@valtimo/connector-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
 import {PLUGINS_TOKEN} from '@valtimo/plugin';
-import {DigitaalklantdossierPluginModule} from './plugin/digitaalklantdossier/digitaalklantdossier-plugin.module';
-import {digitaalKlantDossierPluginSpecification} from './plugin/digitaalklantdossier/digitaalklantdossier.plugin.specification';
-
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -111,21 +108,17 @@ export function tabsFactory() {
     MigrationModule,
     DossierManagementModule,
     PluginManagementModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
+    HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
         deps: [HttpBackend, ConfigService]
       }
-    }),
-    DigitaalklantdossierPluginModule
+    })
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
-    useValue: [
-      digitaalKlantDossierPluginSpecification,
-    ]
+    useValue: []
   }],
   bootstrap: [AppComponent]
 })
