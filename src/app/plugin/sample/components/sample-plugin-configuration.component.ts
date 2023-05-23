@@ -4,7 +4,6 @@ import {BehaviorSubject, combineLatest, map, Observable, Subscription, take} fro
 import {Config} from '../models';
 import {TranslateService} from '@ngx-translate/core';
 
-
 @Component({
   selector: 'sample-plugin-configuration',
   templateUrl: './sample-plugin-configuration.component.html',

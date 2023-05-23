@@ -1,21 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PluginTranslatePipeModule} from '@valtimo/plugin';
-import {FormModule, InputModule, ParagraphModule, SelectModule} from '@valtimo/user-interface';
+import {FormModule, InputModule, SelectModule} from '@valtimo/user-interface';
 import {SamplePluginConfigurationComponent} from './components/sample-plugin-configuration.component';
-import {SampleActionConfigurationComponent} from './components/sample-action-configuration.component';
-
 
 @NgModule({
-  declarations: [SamplePluginConfigurationComponent, SampleActionConfigurationComponent],
+  declarations: [SamplePluginConfigurationComponent],
   imports: [
     CommonModule,
     PluginTranslatePipeModule,
     FormModule,
     InputModule,
-    SelectModule,
-    ParagraphModule
+    SelectModule
   ],
-  exports: [SamplePluginConfigurationComponent, SampleActionConfigurationComponent]
+  exports: [SamplePluginConfigurationComponent]
 })
 export class SamplePluginModule {}
