@@ -51,7 +51,16 @@ import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@val
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {ConnectorManagementModule} from '@valtimo/connector-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
-import {PLUGINS_TOKEN} from '@valtimo/plugin';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
+import {PLUGINS_TOKEN,
+  ObjectenApiPluginModule,
+  objectenApiPluginSpecification,
+  ObjecttypenApiPluginModule,
+  objecttypenApiPluginSpecification,
+  ObjectTokenAuthenticationPluginModule,
+  objectTokenAuthenticationPluginSpecification
+} from '@valtimo/plugin';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -108,6 +117,11 @@ export function tabsFactory() {
     MigrationModule,
     DossierManagementModule,
     PluginManagementModule,
+    ObjectenApiPluginModule,
+    ObjecttypenApiPluginModule,
+    ObjectTokenAuthenticationPluginModule,
+    ObjectModule,
+    ObjectManagementModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

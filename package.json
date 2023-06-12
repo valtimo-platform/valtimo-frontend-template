@@ -50,6 +50,8 @@
     "@valtimo/management": "10.5.0",
     "@valtimo/migration": "10.5.0",
     "@valtimo/milestone": "10.5.0",
+    "@valtimo/object": "10.5.0",
+    "@valtimo/object-management": "10.5.0",
     "@valtimo/plugin": "10.5.0",
     "@valtimo/plugin-management": "10.5.0",
     "@valtimo/process": "10.5.0",
