@@ -64,7 +64,7 @@ export const environment: ValtimoConfig = {
     endpointUri: window['env']['mockApiUri'] || '/api/'
   },
   swagger: {
-    endpointUri: window['env']['apiUri'] || '/v2/api-docs'
+    endpointUri: window['env']['apiUri'] || '/v3/api-docs'
   },
   logger: {
     level: NgxLoggerLevel.TRACE
