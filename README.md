@@ -2,6 +2,7 @@
 ## Prerequisites
 - Node v16
 - NPM v8
+- Angular CLI (https://angular.io/cli#installing-angular-cli)
 
 ## Starting up
 - Run the following command from a terminal in the project root: ```npm install```
