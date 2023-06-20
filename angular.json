@@ -60,12 +60,13 @@
               "node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css",
               "node_modules/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css",
               "node_modules/bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css",
+              "node_modules/@valtimo/components/assets/css/ng-multiselect-dropdown.theme.scss",
               "node_modules/@valtimo/layout/assets/css/app.css",
               "src/styles.scss",
               "node_modules/flatpickr/dist/flatpickr.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/components-jqueryui/jquery-ui.min.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
@@ -85,7 +86,7 @@
               "hammerjs",
               "camunda-bpmn-moddle/lib",
               "object-refs",
-              "heatmap.js"
+              "heatmap.js-fixed"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

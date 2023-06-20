@@ -132,7 +132,11 @@ export function tabsFactory() {
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
-    useValue: []
+    useValue: [
+      objectenApiPluginSpecification,
+      objecttypenApiPluginSpecification,
+      objectTokenAuthenticationPluginSpecification
+    ]
   }],
   bootstrap: [AppComponent]
 })
