@@ -15,7 +15,7 @@ on:
 env:
   GITHUB_REGISTRY: ghcr.io
   DOCKER_IMAGE_NAME: <docker_image_name>
-  GITHUB_NAMESPACE: valtimo-platform
+  GITHUB_NAMESPACE: valtimo-cloud
 
 jobs:
   build:
