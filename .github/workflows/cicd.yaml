@@ -5,7 +5,6 @@ on:
     branches:
       - 'feature/**'
       - 'bugfix/**'
-      - main
   pull_request:
     branches:
       - development
@@ -15,7 +14,7 @@ on:
 
 env:
   GITHUB_REGISTRY: ghcr.io
-  DOCKER_IMAGE_NAME: apaas-valtimo-frontend
+  DOCKER_IMAGE_NAME: <docker_image_name>
   GITHUB_NAMESPACE: valtimo-platform
 
 jobs:
@@ -37,7 +36,8 @@ jobs:
         run: |
           branch=${GITHUB_REF##*/}
           sha=${GITHUB_SHA::8}
-          echo "image_tag=${branch}-${sha}" >> "$GITHUB_OUTPUT"
+          ts=$(date +'%Y%m%d%H%M')
+          echo "image_tag=${branch}-${ts}-${sha}" >> "$GITHUB_OUTPUT"
 
       - name: NPM install and build
         run: |
