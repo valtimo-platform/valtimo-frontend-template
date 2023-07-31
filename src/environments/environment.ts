@@ -41,6 +41,7 @@ export const environment: ValtimoConfig = {
           {link: ['/form-links'], title: 'Form links', sequence: 9},
           {link: ['/process-links'], title: 'Form links Plugin', sequence: 10},
           {title: 'A&E', textClass: 'text-dark font-weight-bold c-default', sequence: 11},
+          {link: ['/access-control'], title: 'Access Control', sequence: 12},
           {link: ['/contexts'], title: 'Contexts', sequence: 12},
           {link: ['/users'], title: 'Users', sequence: 13},
           {link: ['/entitlements'], title: 'Entitlements', sequence: 14},

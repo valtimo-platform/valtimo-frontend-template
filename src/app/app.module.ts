@@ -61,6 +61,7 @@ import {PLUGINS_TOKEN,
   ObjectTokenAuthenticationPluginModule,
   objectTokenAuthenticationPluginSpecification
 } from '@valtimo/plugin';
+import {AccessControlManagementModule} from '@valtimo/access-control-management';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -122,6 +123,7 @@ export function tabsFactory() {
     ObjectTokenAuthenticationPluginModule,
     ObjectModule,
     ObjectManagementModule,
+    AccessControlManagementModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
