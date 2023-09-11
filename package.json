@@ -63,7 +63,7 @@
     "@valtimo/user-interface": "10.6.0",
     "@valtimo/user-management": "10.6.0",
     "@webcomponents/custom-elements": "^1.4.3",
-    "bpmn-js-properties-panel": "^0.33.1",
+    "bpmn-js-properties-panel": "^0.46.0",
     "core-js": "^3.23.3",
     "dmn-js": "^12.1.0",
     "dropzone": "^6.0.0-beta.2",
