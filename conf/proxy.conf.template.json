@@ -1,0 +1,29 @@
+{
+  "/api/*": {
+    "target": "${BACKEND_URL}",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/management/*": {
+    "target": "${BACKEND_URL}",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/v3/*": {
+    "target": "${BACKEND_URL}",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/mock-api/*": {
+    "target": "${BACKEND_URL}",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/mock-api/": ""
+    }
+  }
+}

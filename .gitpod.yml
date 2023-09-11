@@ -1,1 +1,3 @@
 image: gitpod/workspace-node-lts
+tasks:
+  - command: sudo apt install -y gettext
