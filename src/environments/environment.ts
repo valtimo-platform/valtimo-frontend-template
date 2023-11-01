@@ -40,6 +40,7 @@ export const environment: ValtimoConfig = {
           {link: ['/plugins'], title: 'Plugins', sequence: 8},
           {link: ['/form-links'], title: 'Form links', sequence: 9},
           {link: ['/process-links'], title: 'Form links Plugin', sequence: 10},
+          {link: ['/dashboard-management'], title: 'Dashboard configuration', sequence: 10},
           {title: 'A&E', textClass: 'text-dark font-weight-bold c-default', sequence: 11},
           {link: ['/contexts'], title: 'Contexts', sequence: 12},
           {link: ['/users'], title: 'Users', sequence: 13},
