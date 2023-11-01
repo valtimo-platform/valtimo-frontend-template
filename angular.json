@@ -42,7 +42,7 @@
               }
             ],
             "styles": [
-              "node_modules/@valtimo/user-interface/assets/design-tokens.css",
+              "node_modules/@valtimo/components/assets/css/design-tokens.css",
               "node_modules/@valtimo/components/assets/css/carbon.scss",
               "node_modules/@valtimo/components/assets/css/carbon-beagle-compatibility.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
