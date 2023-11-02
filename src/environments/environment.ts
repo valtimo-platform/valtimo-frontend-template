@@ -113,7 +113,11 @@ export const environment: ValtimoConfig = {
   },
   featureToggles: {
     showUserNameInTopBar: true,
-    enableObjectManagement: true
+    enableObjectManagement: true,
+    caseSearchFields: true,
+    caseListColumn: true,
+    sortFilesByDate: true,
+    returnToLastUrlAfterTokenExpiration: true
   }
 };
 
