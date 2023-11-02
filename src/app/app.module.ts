@@ -20,6 +20,7 @@ import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
   DossierDetailTabDocumentsComponent,
+  DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
   DossierModule,
@@ -68,7 +69,8 @@ export function tabsFactory() {
     [DefaultTabs.summary, DossierDetailTabSummaryComponent],
     [DefaultTabs.progress, DossierDetailTabProgressComponent],
     [DefaultTabs.audit, DossierDetailTabAuditComponent],
-    [DefaultTabs.documents, DossierDetailTabDocumentsComponent]
+    [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
+    [DefaultTabs.notes, DossierDetailTabNotesComponent]
   ]);
 }
 
