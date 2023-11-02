@@ -28,7 +28,11 @@ import {
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContextModule} from '@valtimo/context';
-import {DashboardModule} from '@valtimo/dashboard';
+import {
+  BigNumberModule,
+  CaseCountDataSourceModule,
+  DashboardModule,
+} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {UserManagementModule} from '@valtimo/user-management';
@@ -127,6 +131,8 @@ export function tabsFactory() {
     ObjectManagementModule,
     DashboardModule,
     DashboardManagementModule,
+    BigNumberModule,
+    CaseCountDataSourceModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -116,8 +116,13 @@ export const environment: ValtimoConfig = {
     },
   },
   featureToggles: {
+    disableFormFlow: false,
     showUserNameInTopBar: true,
-    enableObjectManagement: true
+    enableObjectManagement: true,
+    caseSearchFields: true,
+    caseListColumn: true,
+    sortFilesByDate: true,
+    returnToLastUrlAfterTokenExpiration: true,
   }
 };
 
