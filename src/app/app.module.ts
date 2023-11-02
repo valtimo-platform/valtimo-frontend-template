@@ -20,13 +20,14 @@ import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
   DossierDetailTabDocumentsComponent,
+  DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
   DossierModule,
 } from '@valtimo/dossier';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DashboardModule} from '@valtimo/dashboard';
+import {BigNumberModule, CaseCountDataSourceModule, DashboardModule} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {ChoiceFieldModule} from '@valtimo/choice-field';
@@ -65,7 +66,8 @@ export function tabsFactory() {
     [DefaultTabs.summary, DossierDetailTabSummaryComponent],
     [DefaultTabs.progress, DossierDetailTabProgressComponent],
     [DefaultTabs.audit, DossierDetailTabAuditComponent],
-    [DefaultTabs.documents, DossierDetailTabDocumentsComponent]
+    [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
+    [DefaultTabs.notes, DossierDetailTabNotesComponent]
   ]);
 }
 
@@ -118,6 +120,8 @@ export function tabsFactory() {
     ObjectManagementModule,
     AccessControlManagementModule,
     DashboardManagementModule,
+    BigNumberModule,
+    CaseCountDataSourceModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
