@@ -27,7 +27,7 @@
     "@angular/platform-browser-dynamic": "^14.2.12",
     "@angular/router": "^14.2.12",
     "@mdi/font": "^7.0.96",
-    "@valtimo/account": "10.7.0",
+    "@valtimo/account": "10.8.0",
     "@valtimo/analyse": "10.7.0",
     "@valtimo/authority": "10.7.0",
     "@valtimo/bootstrap": "10.7.0",
