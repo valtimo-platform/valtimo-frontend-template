@@ -29,7 +29,7 @@
     "@mdi/font": "^7.0.96",
     "@valtimo/account": "10.7.0",
     "@valtimo/analyse": "10.7.0",
-    "@valtimo/authority": "10.7.0",
+    "@valtimo/authority": "10.8.0",
     "@valtimo/bootstrap": "10.7.0",
     "@valtimo/choice-field": "10.7.0",
     "@valtimo/choicefield": "10.7.0",
