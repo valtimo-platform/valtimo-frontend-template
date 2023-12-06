@@ -31,7 +31,7 @@
     "@valtimo/analyse": "10.7.0",
     "@valtimo/authority": "10.7.0",
     "@valtimo/bootstrap": "10.7.0",
-    "@valtimo/choice-field": "10.7.0",
+    "@valtimo/choice-field": "10.8.0",
     "@valtimo/choicefield": "10.7.0",
     "@valtimo/components": "10.7.0",
     "@valtimo/config": "10.7.0",
