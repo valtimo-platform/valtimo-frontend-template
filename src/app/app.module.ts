@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {HttpBackend, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {LayoutModule} from '@valtimo/layout';
+import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
 import {TaskModule} from '@valtimo/task';
 import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
@@ -46,7 +46,7 @@ import {DossierManagementModule} from '@valtimo/dossier-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
 import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/config';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {ConnectorManagementModule} from '@valtimo/connector-management';
+import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
 import {ObjectManagementModule} from '@valtimo/object-management';
 import {ObjectModule} from '@valtimo/object';
@@ -104,7 +104,7 @@ export function tabsFactory() {
     FormModule,
     AnalyseModule,
     SwaggerModule,
-    ConnectorManagementModule,
+    FormFlowManagementModule,
     ProcessManagementModule,
     DecisionModule,
     MilestoneModule,
@@ -122,13 +122,15 @@ export function tabsFactory() {
     DashboardManagementModule,
     BigNumberModule,
     CaseCountDataSourceModule,
+    AccessControlManagementModule,
     HttpClientModule, TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
         deps: [HttpBackend, ConfigService]
       }
-    })
+    }),
+    TranslationManagementModule
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
