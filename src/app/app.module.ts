@@ -11,11 +11,11 @@ import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
   CardModule,
-  MenuModule, registerDocumentenApiFormioUploadComponent, registerFormioFileSelectorComponent,
+  MenuModule,
+  registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
   WidgetModule
 } from '@valtimo/components';
-import {ChoicefieldModule} from '@valtimo/choicefield';
 import {
   DefaultTabs,
   DossierDetailTabAuditComponent,
@@ -40,7 +40,7 @@ import {DecisionModule} from '@valtimo/decision';
 import {MilestoneModule} from '@valtimo/milestone';
 import {LoggerModule} from 'ngx-logger';
 import {FormManagementModule} from '@valtimo/form-management';
-import {FormLinkModule} from '@valtimo/form-link';
+import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
 import {DossierManagementModule} from '@valtimo/dossier-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
@@ -90,7 +90,6 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
-    ChoicefieldModule,
     DossierModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
@@ -109,7 +108,7 @@ export function tabsFactory() {
     DecisionModule,
     MilestoneModule,
     FormManagementModule,
-    FormLinkModule,
+    ProcessLinkModule,
     MigrationModule,
     DossierManagementModule,
     PluginManagementModule,
@@ -146,6 +145,5 @@ export class AppModule {
   constructor(injector: Injector) {
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
-    registerDocumentenApiFormioUploadComponent(injector);
   }
 }
