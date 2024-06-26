@@ -1,6 +1,6 @@
 # Getting started
 ## Prerequisites
-- Node v18
+- Node v20
 - NPM v8
 - Angular CLI (https://angular.io/cli#installing-angular-cli)
 
