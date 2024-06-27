@@ -5,10 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config conf/proxy.conf.json",
-    "build": "ng build --output-path=deployment/dist",
-    "codegen": "node --loader ts-node/esm playwright.codegen.ts admin",
-    "codegenUser": "node --loader ts-node/esm playwright.codegen.ts user",
-    "e2eTestPlaywright": "npx playwright test --reporter=html --headed",
+    "build": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --output-path=deployment/dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -82,7 +79,6 @@
     "@angular/cli": "^17.2.1",
     "@angular/compiler-cli": "^17.2.2",
     "@angular/language-service": "^17.2.2",
-    "@playwright/test": "1.42.1",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
     "@types/node": "20.11.24",
