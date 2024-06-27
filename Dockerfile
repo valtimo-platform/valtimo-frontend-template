@@ -1,7 +1,7 @@
 FROM nginxinc/nginx-unprivileged:1.21-alpine
 
-COPY --chown=1000:1000 dist/ /usr/share/nginx/html
-COPY /conf/default.conf /etc/nginx/conf.d/default.conf
+COPY --chown=1000:1000 ./deployment/dist /usr/share/nginx/html
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 USER 1000
 
