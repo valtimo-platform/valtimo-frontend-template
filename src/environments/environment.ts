@@ -86,7 +86,9 @@ export const environment: ValtimoConfig = {
     enableTabManagement: true,
     allowUserThemeSwitching: true,
     enableCompactModeToggle: true,
-    enableUserNameInTopBarToggle: true
+    enableUserNameInTopBarToggle: true,
+    enableIntermediateSave: true,
+    enableTaskPanel: true
   }
 };
 
