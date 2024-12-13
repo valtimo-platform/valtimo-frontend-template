@@ -105,13 +105,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "valtimo-frontend-template:build"
+            "buildTarget": "valtimo-frontend-template:build"
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "valtimo-frontend-template:build"
+            "buildTarget": "valtimo-frontend-template:build"
           }
         },
         "test": {

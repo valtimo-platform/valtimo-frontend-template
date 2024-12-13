@@ -60,6 +60,7 @@ import {PLUGINS_TOKEN,
 } from '@valtimo/plugin';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {LoggingModule} from '@valtimo/logging';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -129,7 +130,8 @@ export function tabsFactory() {
         deps: [HttpBackend, ConfigService]
       }
     }),
-    TranslationManagementModule
+    TranslationManagementModule,
+    LoggingModule
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
