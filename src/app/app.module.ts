@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpBackend, HttpClientModule} from '@angular/common/http';
+import {HttpBackend} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule, TranslationManagementModule} from '@valtimo/layout';
@@ -12,22 +12,31 @@ import {
   BpmnJsDiagramModule,
   CardModule,
   MenuModule,
+  WidgetModule,
+  enableCustomFormioComponents,
+  registerFormioCurrencyComponent,
   registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
-  WidgetModule
+  registerFormioValueResolverSelectorComponent
 } from '@valtimo/components';
 import {
   DefaultTabs,
-  DossierDetailTabAuditComponent,
-  DossierDetailTabDocumentsComponent,
-  DossierDetailTabNotesComponent,
-  DossierDetailTabProgressComponent,
-  DossierDetailTabSummaryComponent,
-  DossierModule,
-} from '@valtimo/dossier';
+  CaseDetailTabAuditComponent,
+  CaseDetailTabDocumentsComponent,
+  CaseDetailTabNotesComponent,
+  CaseDetailTabProgressComponent,
+  CaseDetailTabSummaryComponent,
+  CaseModule,
+} from '@valtimo/case';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BigNumberModule, CaseCountDataSourceModule, DashboardModule} from '@valtimo/dashboard';
+import {
+  CaseCountDataSourceModule,
+  CaseCountsDataSourceModule,
+  CaseGroupByDataSourceModule,
+  DashboardModule,
+  DisplayWidgetTypesModule,
+} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {ChoiceFieldModule} from '@valtimo/choice-field';
@@ -42,7 +51,7 @@ import {LoggerModule} from 'ngx-logger';
 import {FormManagementModule} from '@valtimo/form-management';
 import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
-import {DossierManagementModule} from '@valtimo/dossier-management';
+import {CaseManagementModule} from '@valtimo/case-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
 import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/config';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -60,15 +69,17 @@ import {PLUGINS_TOKEN,
 } from '@valtimo/plugin';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {TaskManagementModule} from '@valtimo/task-management';
+import {SseModule} from '@valtimo/sse';
 import {LoggingModule} from '@valtimo/logging';
 
 export function tabsFactory() {
   return new Map<string, object>([
-    [DefaultTabs.summary, DossierDetailTabSummaryComponent],
-    [DefaultTabs.progress, DossierDetailTabProgressComponent],
-    [DefaultTabs.audit, DossierDetailTabAuditComponent],
-    [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
-    [DefaultTabs.notes, DossierDetailTabNotesComponent]
+    [DefaultTabs.summary, CaseDetailTabSummaryComponent],
+    [DefaultTabs.progress, CaseDetailTabProgressComponent],
+    [DefaultTabs.audit, CaseDetailTabAuditComponent],
+    [DefaultTabs.documents, CaseDetailTabDocumentsComponent],
+    [DefaultTabs.notes, CaseDetailTabNotesComponent],
   ]);
 }
 
@@ -77,7 +88,6 @@ export function tabsFactory() {
     AppComponent
   ],
   imports: [
-    HttpClientModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -91,12 +101,13 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
-    DossierModule.forRoot(tabsFactory),
+    CaseModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardModule,
+    DashboardManagementModule,
     DocumentModule,
     AccountModule,
     ChoiceFieldModule,
@@ -111,19 +122,20 @@ export function tabsFactory() {
     FormManagementModule,
     ProcessLinkModule,
     MigrationModule,
-    DossierManagementModule,
+    CaseManagementModule,
     PluginManagementModule,
     ObjectenApiPluginModule,
     ObjecttypenApiPluginModule,
     ObjectTokenAuthenticationPluginModule,
     ObjectModule,
     ObjectManagementModule,
-    AccessControlManagementModule,
-    DashboardManagementModule,
-    BigNumberModule,
+    DisplayWidgetTypesModule,
     CaseCountDataSourceModule,
+    CaseCountsDataSourceModule,
+    CaseGroupByDataSourceModule,
+    DashboardModule,
     AccessControlManagementModule,
-    HttpClientModule, TranslateModule.forRoot({
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
@@ -131,21 +143,24 @@ export function tabsFactory() {
       }
     }),
     TranslationManagementModule,
-    LoggingModule
-  ],
-  providers: [{
+    TaskManagementModule,
+    SseModule,
+    LoggingModule], providers: [{
     provide: PLUGINS_TOKEN,
     useValue: [
       objectenApiPluginSpecification,
       objecttypenApiPluginSpecification,
-      objectTokenAuthenticationPluginSpecification
+      objectTokenAuthenticationPluginSpecification,
     ]
   }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(injector: Injector) {
+    enableCustomFormioComponents(injector)
+    registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
+    registerFormioValueResolverSelectorComponent(injector);
   }
 }

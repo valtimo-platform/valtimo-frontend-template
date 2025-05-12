@@ -15,7 +15,7 @@ export const environment: ValtimoConfig = {
   menu: {
     menuItems: [
       {roles: [ROLE_USER], link: ['/'], title: 'Dashboard', iconClass: 'icon mdi mdi-view-dashboard', sequence: 0},
-      {roles: [ROLE_USER], title: 'Dossiers', iconClass: 'icon mdi mdi-layers', sequence: 1, children: []},
+      {roles: [ROLE_USER], title: 'Cases', iconClass: 'icon mdi mdi-layers', sequence: 1, children: []},
       {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 2},
       {roles: [ROLE_ADMIN], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled,},
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
@@ -26,7 +26,7 @@ export const environment: ValtimoConfig = {
           {link: ['/form-management'], title: 'Forms', sequence: 3},
           {link: ['/form-flow-management'], title: 'Form flows', sequence: 4},
           {link: ['/decision-tables'], title: 'Decision tables', sequence: 5},
-          {link: ['/dossier-management'], title: 'Dossiers', sequence: 6},
+          {link: ['/cases-management'], title: 'Cases', sequence: 6},
           {link: ['/task-management'], title: 'Tasks', sequence: 7},
           {link: ['/object-management'], title: 'Objects', sequence: 8},
           {link: ['/plugins'], title: 'Plugins', sequence: 9},
@@ -38,7 +38,7 @@ export const environment: ValtimoConfig = {
           {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 15},
           {link: ['/case-migration'], title: 'Case migration (beta)', sequence: 16},
           {link: ['/process-migration'], title: 'Process migration', sequence: 17},
-          {link: ['/choice-fields'], title: 'Choice fields', sequence: 18},
+          {link: ['/choice-fields'], title: 'Choice fields', sequence: 18}
         ]
       },
       {
@@ -62,20 +62,13 @@ export const environment: ValtimoConfig = {
     level: NgxLoggerLevel.TRACE
   },
   definitions: {
-    dossiers: []
+    cases: []
   },
   openZaak: {
     catalogus: window['env']['openZaakCatalogusId'] || ''
   },
   uploadProvider: UploadProvider.S3,
   defaultDefinitionTable: defaultDefinitionColumns,
-  customDefinitionTables: {
-    leningen: [
-      ...defaultDefinitionColumns,
-      {propertyName: '$.voornaam', translationKey: 'firstName', sortable: true},
-      {propertyName: 'relatedFiles', translationKey: 'files', sortable: true, viewType: 'relatedFiles'}
-    ]
-  },
   featureToggles: {
     showUserNameInTopBar: true,
     disableCaseCount: false,
@@ -88,8 +81,7 @@ export const environment: ValtimoConfig = {
     allowUserThemeSwitching: true,
     enableCompactModeToggle: true,
     enableUserNameInTopBarToggle: true,
-    enableIntermediateSave: true,
-    enableTaskPanel: true
+    enableIntermediateSave: true
   }
 };
 
