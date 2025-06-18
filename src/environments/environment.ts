@@ -27,20 +27,20 @@ export const environment: ValtimoConfig = {
           {link: ['/dashboard-management'], title: 'Dashboard', sequence: 4},
           {link: ['/access-control'], title: 'Access Control', sequence: 5},
           {link: ['/translation-management'], title: 'Translations', sequence: 6},
+          {link: ['/choice-fields'], title: 'Choice fields', sequence: 7},
 
-          {title: 'Object management', textClass: 'text-dark font-weight-bold c-default', sequence: 7},
-          {link: ['/object-management'], title: 'Objects', sequence: 8},
-          {link: ['/form-management'], title: 'Forms', sequence: 9},
+          {title: 'Object management', textClass: 'text-dark font-weight-bold c-default', sequence: 8},
+          {link: ['/object-management'], title: 'Objects', sequence: 9},
+          {link: ['/form-management'], title: 'Forms', sequence: 10},
 
-          {title: 'System processes', textClass: 'text-dark font-weight-bold c-default', sequence: 10},
-          {link: ['/processes'], title: 'Processes', sequence: 11},
-          {link: ['/decision-tables'], title: 'Decision tables', sequence: 12},
+          {title: 'System processes', textClass: 'text-dark font-weight-bold c-default', sequence: 11},
+          {link: ['/processes'], title: 'Processes', sequence: 12},
+          {link: ['/decision-tables'], title: 'Decision tables', sequence: 13},
 
-          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 13},
-          {link: ['/logging'], title: 'Logs', sequence: 14},
-          {link: ['/case-migration'], title: 'Case migration (beta)', sequence: 15},
-          {link: ['/process-migration'], title: 'Process migration', sequence: 16},
-          {link: ['/choice-fields'], title: 'Choice fields', sequence: 17}
+          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 14},
+          {link: ['/logging'], title: 'Logs', sequence: 15},
+          {link: ['/case-migration'], title: 'Case migration (beta)', sequence: 16},
+          {link: ['/process-migration'], title: 'Process migration', sequence: 17}
         ]
       },
       {
