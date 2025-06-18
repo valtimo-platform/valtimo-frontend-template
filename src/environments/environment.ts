@@ -21,24 +21,26 @@ export const environment: ValtimoConfig = {
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
       {
         roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
-          {title: 'Basics', textClass: 'text-dark font-weight-bold c-default', sequence: 1},
-          {link: ['/processes'], title: 'Processes', sequence: 2},
-          {link: ['/form-management'], title: 'Forms', sequence: 3},
-          {link: ['/form-flow-management'], title: 'Form flows', sequence: 4},
-          {link: ['/decision-tables'], title: 'Decision tables', sequence: 5},
-          {link: ['/cases-management'], title: 'Cases', sequence: 6},
-          {link: ['/task-management'], title: 'Tasks', sequence: 7},
+          {title: 'Configuration', textClass: 'text-dark font-weight-bold c-default', sequence: 1},
+          {link: ['/cases-management'], title: 'Cases', sequence: 2},
+          {link: ['/plugins'], title: 'Plugins', sequence: 3},
+          {link: ['/dashboard-management'], title: 'Dashboard', sequence: 4},
+          {link: ['/access-control'], title: 'Access Control', sequence: 5},
+          {link: ['/translation-management'], title: 'Translations', sequence: 6},
+
+          {title: 'Object management', textClass: 'text-dark font-weight-bold c-default', sequence: 7},
           {link: ['/object-management'], title: 'Objects', sequence: 8},
-          {link: ['/plugins'], title: 'Plugins', sequence: 9},
-          {link: ['/process-links'], title: 'Process links', sequence: 10},
-          {link: ['/dashboard-management'], title: 'Dashboard', sequence: 11},
-          {link: ['/access-control'], title: 'Access Control', sequence: 12},
-          {link: ['/translation-management'], title: 'Translations', sequence: 13},
+          {link: ['/form-management'], title: 'Forms', sequence: 9},
+
+          {title: 'System processes', textClass: 'text-dark font-weight-bold c-default', sequence: 10},
+          {link: ['/processes'], title: 'Processes', sequence: 11},
+          {link: ['/decision-tables'], title: 'Decision tables', sequence: 12},
+
+          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 13},
           {link: ['/logging'], title: 'Logs', sequence: 14},
-          {title: 'Other', textClass: 'text-dark font-weight-bold c-default', sequence: 15},
-          {link: ['/case-migration'], title: 'Case migration (beta)', sequence: 16},
-          {link: ['/process-migration'], title: 'Process migration', sequence: 17},
-          {link: ['/choice-fields'], title: 'Choice fields', sequence: 18}
+          {link: ['/case-migration'], title: 'Case migration (beta)', sequence: 15},
+          {link: ['/process-migration'], title: 'Process migration', sequence: 16},
+          {link: ['/choice-fields'], title: 'Choice fields', sequence: 17}
         ]
       },
       {
