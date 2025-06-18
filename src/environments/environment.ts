@@ -22,7 +22,7 @@ export const environment: ValtimoConfig = {
       {
         roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
           {title: 'Configuration', textClass: 'text-dark font-weight-bold c-default', sequence: 1},
-          {link: ['/cases-management'], title: 'Cases', sequence: 2},
+          {link: ['/case-management'], title: 'Cases', sequence: 2},
           {link: ['/plugins'], title: 'Plugins', sequence: 3},
           {link: ['/dashboard-management'], title: 'Dashboard', sequence: 4},
           {link: ['/access-control'], title: 'Access Control', sequence: 5},
