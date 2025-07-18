@@ -29,6 +29,8 @@
     "@valtimo/account": "13.0.0",
     "@valtimo/analyse": "13.0.0",
     "@valtimo/bootstrap": "13.0.0",
+    "@valtimo/case": "13.0.0",
+    "@valtimo/case-management": "13.0.0",
     "@valtimo/case-migration": "13.0.0",
     "@valtimo/choice-field": "13.0.0",
     "@valtimo/components": "13.0.0",
@@ -53,6 +55,8 @@
     "@valtimo/process-management": "13.0.0",
     "@valtimo/resource": "13.0.0",
     "@valtimo/security": "13.0.0",
+    "@valtimo/shared": "13.0.0",
+    "@valtimo/sse": "13.0.0",
     "@valtimo/swagger": "13.0.0",
     "@valtimo/task": "13.0.0",
     "@valtimo/task-management": "13.0.0",
@@ -78,11 +82,7 @@
     "camunda-bpmn-moddle": "7.0.1",
     "diagram-js": "15.3.0",
     "@ngx-translate/core": "16.0.4",
-    "@ngx-translate/http-loader": "16.0.1",
-    "@valtimo/sse": "13.0.0",
-    "@valtimo/shared": "13.0.0",
-    "@valtimo/case": "13.0.0",
-    "@valtimo/case-management": "13.0.0"
+    "@ngx-translate/http-loader": "16.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.9",
@@ -93,7 +93,7 @@
     "@types/jasminewd2": "2.0.13",
     "@types/node": "22.15.3",
     "codelyzer": "6.0.2",
-    "deepmerge-ts": "5.1.0",
+    "deepmerge-ts": "7.1.5",
     "dotenv": "16.4.5",
     "jasmine-core": "5.7.0",
     "jasmine-spec-reporter": "7.0.0",
@@ -106,6 +106,6 @@
     "moment-duration-format": "2.3.2",
     "replace": "1.2.2",
     "ts-node": "10.9.1",
-    "typescript": "5.5.4"
+    "typescript": "5.8.3"
   }
 }

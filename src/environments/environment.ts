@@ -77,7 +77,7 @@ export const environment: ValtimoConfig = {
   },
   uploadProvider: UploadProvider.S3,
   defaultDefinitionTable: defaultDefinitionColumns,
-    featureToggles: {
+  featureToggles: {
     showUserNameInTopBar: true,
     disableCaseCount: false,
     experimentalDmnEditing: true,
@@ -90,7 +90,7 @@ export const environment: ValtimoConfig = {
     enableCompactModeToggle: true,
     enableUserNameInTopBarToggle: true,
     enableIntermediateSave: true
-}
+  }
 };
 
 /*
