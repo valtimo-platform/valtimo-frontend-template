@@ -5,10 +5,10 @@ const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    errorHandler: error => {
-      window.location.href = '/';
-    }
-  })],
+  errorHandler: error => {
+    window.location.href = '/';
+  }
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
