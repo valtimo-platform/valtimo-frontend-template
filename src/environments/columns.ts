@@ -25,6 +25,6 @@ export const defaultDefinitionColumns = [
   {
     propertyName: 'assigneeFullName',
     translationKey: 'assigneeFullName',
-    sortable: true,
+    sortable: true
   }
 ];

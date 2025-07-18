@@ -1,3 +1,4 @@
+import { BpmnJsDiagramModule, MenuModule, WidgetModule, enableCustomFormioComponents, registerFormioCurrencyComponent, registerFormioUploadComponent, registerFormioFileSelectorComponent, registerFormioValueResolverSelectorComponent } from '@valtimo/components';
 import {BrowserModule} from '@angular/platform-browser';
 import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -9,22 +10,14 @@ import {TaskModule} from '@valtimo/task';
 import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {
-  BpmnJsDiagramModule,
-  CardModule,
-  MenuModule,
-  registerFormioFileSelectorComponent,
-  registerFormioUploadComponent,
-  WidgetModule
-} from '@valtimo/components';
-import {
   DefaultTabs,
-  DossierDetailTabAuditComponent,
-  DossierDetailTabDocumentsComponent,
-  DossierDetailTabNotesComponent,
-  DossierDetailTabProgressComponent,
-  DossierDetailTabSummaryComponent,
-  DossierModule,
-} from '@valtimo/dossier';
+  CaseDetailTabAuditComponent,
+  CaseDetailTabDocumentsComponent,
+  CaseDetailTabNotesComponent,
+  CaseDetailTabProgressComponent,
+  CaseDetailTabSummaryComponent,
+  CaseModule,
+} from '@valtimo/case';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BigNumberModule, CaseCountDataSourceModule, DashboardModule} from '@valtimo/dashboard';
@@ -42,9 +35,9 @@ import {LoggerModule} from 'ngx-logger';
 import {FormManagementModule} from '@valtimo/form-management';
 import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
-import {DossierManagementModule} from '@valtimo/dossier-management';
+import {CaseManagementModule} from '@valtimo/case-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
-import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/config';
+import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/shared';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
@@ -61,27 +54,25 @@ import {PLUGINS_TOKEN,
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {LoggingModule} from '@valtimo/logging';
+import { SseModule } from '@valtimo/sse';
 
 export function tabsFactory() {
   return new Map<string, object>([
-    [DefaultTabs.summary, DossierDetailTabSummaryComponent],
-    [DefaultTabs.progress, DossierDetailTabProgressComponent],
-    [DefaultTabs.audit, DossierDetailTabAuditComponent],
-    [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
-    [DefaultTabs.notes, DossierDetailTabNotesComponent]
+    [DefaultTabs.summary, CaseDetailTabSummaryComponent],
+    [DefaultTabs.progress, CaseDetailTabProgressComponent],
+    [DefaultTabs.audit, CaseDetailTabAuditComponent],
+    [DefaultTabs.documents, CaseDetailTabDocumentsComponent],
+    [DefaultTabs.notes, CaseDetailTabNotesComponent]
   ]);
 }
 
 @NgModule({ declarations: [
         AppComponent
     ],
-    bootstrap: [AppComponent], imports: [HttpClientModule,
-        CommonModule,
+    bootstrap: [AppComponent], imports: [        CommonModule,
         BrowserModule,
         AppRoutingModule,
-        LayoutModule,
-        CardModule,
-        WidgetModule,
+        LayoutModule,        WidgetModule,
         BootstrapModule,
         ConfigModule.forRoot(environment),
         LoggerModule.forRoot(environment.logger),
@@ -89,7 +80,7 @@ export function tabsFactory() {
         SecurityModule,
         MenuModule,
         TaskModule,
-        DossierModule.forRoot(tabsFactory),
+        CaseModule.forRoot(tabsFactory),
         ProcessModule,
         BpmnJsDiagramModule,
         FormsModule,
@@ -109,7 +100,7 @@ export function tabsFactory() {
         FormManagementModule,
         ProcessLinkModule,
         MigrationModule,
-        DossierManagementModule,
+        CaseManagementModule,
         PluginManagementModule,
         ObjectenApiPluginModule,
         ObjecttypenApiPluginModule,
@@ -129,7 +120,7 @@ export function tabsFactory() {
             }
         }),
         TranslationManagementModule,
-        LoggingModule], providers: [{
+        LoggingModule, SseModule], providers: [{
             provide: PLUGINS_TOKEN,
             useValue: [
                 objectenApiPluginSpecification,
