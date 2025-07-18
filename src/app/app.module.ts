@@ -66,71 +66,85 @@ export function tabsFactory() {
   ]);
 }
 
-@NgModule({ declarations: [
-        AppComponent
-    ],
-    bootstrap: [AppComponent], imports: [        CommonModule,
-        BrowserModule,
-        AppRoutingModule,
-        LayoutModule,        WidgetModule,
-        BootstrapModule,
-        ConfigModule.forRoot(environment),
-        LoggerModule.forRoot(environment.logger),
-        environment.authentication.module,
-        SecurityModule,
-        MenuModule,
-        TaskModule,
-        CaseModule.forRoot(tabsFactory),
-        ProcessModule,
-        BpmnJsDiagramModule,
-        FormsModule,
-        ReactiveFormsModule,
-        DashboardModule,
-        DocumentModule,
-        AccountModule,
-        ChoiceFieldModule,
-        ResourceModule,
-        FormModule,
-        AnalyseModule,
-        SwaggerModule,
-        FormFlowManagementModule,
-        ProcessManagementModule,
-        DecisionModule,
-        MilestoneModule,
-        FormManagementModule,
-        ProcessLinkModule,
-        MigrationModule,
-        CaseManagementModule,
-        PluginManagementModule,
-        ObjectenApiPluginModule,
-        ObjecttypenApiPluginModule,
-        ObjectTokenAuthenticationPluginModule,
-        ObjectModule,
-        ObjectManagementModule,
-        AccessControlManagementModule,
-        DashboardManagementModule,
-        BigNumberModule,
-        CaseCountDataSourceModule,
-        AccessControlManagementModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: MultiTranslateHttpLoaderFactory,
-                deps: [HttpBackend, ConfigService]
-            }
-        }),
-        TranslationManagementModule,
-        LoggingModule, SseModule], providers: [{
-            provide: PLUGINS_TOKEN,
-            useValue: [
-                objectenApiPluginSpecification,
-                objecttypenApiPluginSpecification,
-                objectTokenAuthenticationPluginSpecification
-            ]
-        }, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    WidgetModule,
+    BootstrapModule,
+    ConfigModule.forRoot(environment),
+    LoggerModule.forRoot(environment.logger),
+    environment.authentication.module,
+    SecurityModule,
+    MenuModule,
+    TaskModule,
+    CaseModule.forRoot(tabsFactory),
+    ProcessModule,
+    BpmnJsDiagramModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DashboardModule,
+    DocumentModule,
+    AccountModule,
+    ChoiceFieldModule,
+    ResourceModule,
+    FormModule,
+    AnalyseModule,
+    SwaggerModule,
+    FormFlowManagementModule,
+    ProcessManagementModule,
+    DecisionModule,
+    MilestoneModule,
+    FormManagementModule,
+    ProcessLinkModule,
+    MigrationModule,
+    CaseManagementModule,
+    PluginManagementModule,
+    ObjectenApiPluginModule,
+    ObjecttypenApiPluginModule,
+    ObjectTokenAuthenticationPluginModule,
+    ObjectModule,
+    ObjectManagementModule,
+    AccessControlManagementModule,
+    DashboardManagementModule,
+    BigNumberModule,
+    CaseCountDataSourceModule,
+    AccessControlManagementModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: MultiTranslateHttpLoaderFactory,
+        deps: [HttpBackend, ConfigService]
+      }
+    }),
+    TranslationManagementModule,
+    LoggingModule,
+    SseModule,
+  ],
+  providers: [
+    {
+      provide: PLUGINS_TOKEN,
+      useValue: [
+        objectenApiPluginSpecification,
+        objecttypenApiPluginSpecification,
+        objectTokenAuthenticationPluginSpecification
+      ]
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
 export class AppModule {
   constructor(injector: Injector) {
+    enableCustomFormioComponents(injector)
+    registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
+    registerFormioValueResolverSelectorComponent(injector);
   }
 }
