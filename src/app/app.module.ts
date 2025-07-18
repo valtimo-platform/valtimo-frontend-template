@@ -37,7 +37,7 @@ import {ProcessLinkModule} from '@valtimo/process-link';
 import {MigrationModule} from '@valtimo/migration';
 import {CaseManagementModule} from '@valtimo/case-management';
 import {BootstrapModule} from '@valtimo/bootstrap';
-import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/shared';
+import {CASE_MANAGEMENT_TAB_TOKEN, ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@valtimo/shared';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
@@ -55,6 +55,7 @@ import {AccessControlManagementModule} from '@valtimo/access-control-management'
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {LoggingModule} from '@valtimo/logging';
 import { SseModule } from '@valtimo/sse';
+import {CaseMigrationModule} from '@valtimo/case-migration';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -84,6 +85,7 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
+    CaseMigrationModule,
     CaseModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
@@ -135,6 +137,11 @@ export function tabsFactory() {
         objecttypenApiPluginSpecification,
         objectTokenAuthenticationPluginSpecification
       ]
+    },
+    {
+      provide: CASE_MANAGEMENT_TAB_TOKEN,
+      useValue: {},
+      multi: true,
     },
     provideHttpClient(withInterceptorsFromDi())
   ]
