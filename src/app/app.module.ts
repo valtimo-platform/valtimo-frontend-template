@@ -138,11 +138,6 @@ export function tabsFactory() {
         objectTokenAuthenticationPluginSpecification
       ]
     },
-    {
-      provide: CASE_MANAGEMENT_TAB_TOKEN,
-      useValue: {},
-      multi: true,
-    },
     provideHttpClient(withInterceptorsFromDi())
   ]
 })
