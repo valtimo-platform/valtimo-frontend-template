@@ -11,9 +11,12 @@ import {SecurityModule} from '@valtimo/security';
 import {
   BpmnJsDiagramModule,
   CardModule,
+  enableCustomFormioComponents,
   MenuModule,
+  registerFormioCurrencyComponent,
   registerFormioFileSelectorComponent,
   registerFormioUploadComponent,
+  registerFormioValueResolverSelectorComponent,
   WidgetModule
 } from '@valtimo/components';
 import {
@@ -23,11 +26,17 @@ import {
   DossierDetailTabNotesComponent,
   DossierDetailTabProgressComponent,
   DossierDetailTabSummaryComponent,
-  DossierModule,
+  DossierModule
 } from '@valtimo/dossier';
 import {ProcessModule} from '@valtimo/process';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BigNumberModule, CaseCountDataSourceModule, DashboardModule} from '@valtimo/dashboard';
+import {
+  CaseCountDataSourceModule,
+  CaseCountsDataSourceModule,
+  CaseGroupByDataSourceModule,
+  DashboardModule,
+  DisplayWidgetTypesModule,
+} from '@valtimo/dashboard';
 import {DocumentModule} from '@valtimo/document';
 import {AccountModule} from '@valtimo/account';
 import {ChoiceFieldModule} from '@valtimo/choice-field';
@@ -48,18 +57,21 @@ import {ConfigModule, ConfigService, MultiTranslateHttpLoaderFactory} from '@val
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {FormFlowManagementModule} from '@valtimo/form-flow-management';
 import {PluginManagementModule} from '@valtimo/plugin-management';
-import {ObjectManagementModule} from '@valtimo/object-management';
-import {ObjectModule} from '@valtimo/object';
-import {PLUGINS_TOKEN,
+import {
   ObjectenApiPluginModule,
   objectenApiPluginSpecification,
+  ObjectTokenAuthenticationPluginModule,
+  objectTokenAuthenticationPluginSpecification,
   ObjecttypenApiPluginModule,
   objecttypenApiPluginSpecification,
-  ObjectTokenAuthenticationPluginModule,
-  objectTokenAuthenticationPluginSpecification
+  PLUGINS_TOKEN,
 } from '@valtimo/plugin';
+import {ObjectManagementModule} from '@valtimo/object-management';
+import {ObjectModule} from '@valtimo/object';
 import {AccessControlManagementModule} from '@valtimo/access-control-management';
 import {DashboardManagementModule} from '@valtimo/dashboard-management';
+import {TaskManagementModule} from '@valtimo/task-management';
+import {CaseMigrationModule} from '@valtimo/case-migration';
 import {LoggingModule} from '@valtimo/logging';
 
 export function tabsFactory() {
@@ -68,7 +80,7 @@ export function tabsFactory() {
     [DefaultTabs.progress, DossierDetailTabProgressComponent],
     [DefaultTabs.audit, DossierDetailTabAuditComponent],
     [DefaultTabs.documents, DossierDetailTabDocumentsComponent],
-    [DefaultTabs.notes, DossierDetailTabNotesComponent]
+    [DefaultTabs.notes, DossierDetailTabNotesComponent],
   ]);
 }
 
@@ -91,12 +103,14 @@ export function tabsFactory() {
     SecurityModule,
     MenuModule,
     TaskModule,
+    CaseMigrationModule,
     DossierModule.forRoot(tabsFactory),
     ProcessModule,
     BpmnJsDiagramModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardModule,
+    DashboardManagementModule,
     DocumentModule,
     AccountModule,
     ChoiceFieldModule,
@@ -118,12 +132,14 @@ export function tabsFactory() {
     ObjectTokenAuthenticationPluginModule,
     ObjectModule,
     ObjectManagementModule,
-    AccessControlManagementModule,
-    DashboardManagementModule,
-    BigNumberModule,
+    DisplayWidgetTypesModule,
     CaseCountDataSourceModule,
+    CaseCountsDataSourceModule,
+    CaseGroupByDataSourceModule,
+    DashboardModule,
     AccessControlManagementModule,
-    HttpClientModule, TranslateModule.forRoot({
+    HttpClientModule,
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: MultiTranslateHttpLoaderFactory,
@@ -131,6 +147,7 @@ export function tabsFactory() {
       }
     }),
     TranslationManagementModule,
+    TaskManagementModule,
     LoggingModule
   ],
   providers: [{
@@ -145,7 +162,10 @@ export function tabsFactory() {
 })
 export class AppModule {
   constructor(injector: Injector) {
+    enableCustomFormioComponents(injector)
+    registerFormioCurrencyComponent(injector);
     registerFormioUploadComponent(injector);
     registerFormioFileSelectorComponent(injector);
+    registerFormioValueResolverSelectorComponent(injector);
   }
 }
