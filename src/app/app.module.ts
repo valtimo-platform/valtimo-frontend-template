@@ -73,6 +73,16 @@ import {DashboardManagementModule} from '@valtimo/dashboard-management';
 import {TaskManagementModule} from '@valtimo/task-management';
 import {CaseMigrationModule} from '@valtimo/case-migration';
 import {LoggingModule} from '@valtimo/logging';
+import {
+  SmtpMailPluginModule,
+  smtpmailPluginSpecification
+} from '@valtimo-plugins/smtpmail';
+import {
+  MailTemplatePluginModule,
+  mailTemplatePluginSpecification,
+  TextTemplatePluginModule,
+  textTemplatePluginSpecification
+} from '@valtimo-plugins/freemarker';
 
 export function tabsFactory() {
   return new Map<string, object>([
@@ -148,14 +158,20 @@ export function tabsFactory() {
     }),
     TranslationManagementModule,
     TaskManagementModule,
-    LoggingModule
+    LoggingModule,
+    SmtpMailPluginModule,
+    MailTemplatePluginModule,
+    TextTemplatePluginModule
   ],
   providers: [{
     provide: PLUGINS_TOKEN,
     useValue: [
       objectenApiPluginSpecification,
       objecttypenApiPluginSpecification,
-      objectTokenAuthenticationPluginSpecification
+      objectTokenAuthenticationPluginSpecification,
+      smtpmailPluginSpecification,
+      mailTemplatePluginSpecification,
+      textTemplatePluginSpecification
     ]
   }],
   bootstrap: [AppComponent]
