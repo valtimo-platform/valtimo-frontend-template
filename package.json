@@ -47,6 +47,7 @@
     "@valtimo/form-flow-management": "13.13.0",
     "@valtimo/form-management": "13.13.0",
     "@valtimo/keycloak": "13.13.0",
+    "@valtimo/iko": "13.13.0",
     "@valtimo/layout": "13.13.0",
     "@valtimo/logging": "13.13.0",
     "@valtimo/migration": "13.13.0",
