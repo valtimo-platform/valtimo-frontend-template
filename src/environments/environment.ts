@@ -19,8 +19,9 @@ export const environment: ValtimoConfig = {
       {roles: [ROLE_USER], link: ['/tasks'], title: 'Tasks', iconClass: 'icon mdi mdi-check-all', sequence: 2},
       {roles: [ROLE_USER], title: 'Objects', iconClass: 'icon mdi mdi-archive', sequence: 3, includeFunction: IncludeFunction.ObjectManagementEnabled},
       {roles: [ROLE_USER], link: ['/analysis'], title: 'Analysis', iconClass: 'icon mdi mdi-chart-bar', sequence: 4},
+      {roles: [ROLE_USER], link: ['/teams'], title: 'teams.title', iconClass: 'icon mdi mdi-account-group', sequence: 5},
       {
-        roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 5, children: [
+        roles: [ROLE_ADMIN], title: 'Admin', iconClass: 'icon mdi mdi-tune', sequence: 6, children: [
           {title: 'Configuration', textClass: 'text-dark font-weight-bold c-default', sequence: 1},
           {link: ['/building-block-management'], title: 'buildingBlockManagement.title', sequence: 2},
           {link: ['/case-management'], title: 'Cases', sequence: 3},
@@ -45,7 +46,7 @@ export const environment: ValtimoConfig = {
         ],
       },
       {
-        roles: [ROLE_DEVELOPER], title: 'Development', iconClass: 'icon mdi mdi-code', sequence: 6, children: [
+        roles: [ROLE_DEVELOPER], title: 'Development', iconClass: 'icon mdi mdi-code', sequence: 7, children: [
           {link: ['/swagger'], title: 'Swagger', iconClass: 'icon mdi mdi-dot-circle', sequence: 1}
         ]
       }

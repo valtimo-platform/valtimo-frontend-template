@@ -66,6 +66,7 @@
     "@valtimo/swagger": "13.23.0",
     "@valtimo/task": "13.23.0",
     "@valtimo/task-management": "13.23.0",
+    "@valtimo/teams": "13.23.0",
     "@webcomponents/custom-elements": "1.6.0",
     "bpmn-js": "18.6.1",
     "bpmn-js-properties-panel": "5.35.0",
