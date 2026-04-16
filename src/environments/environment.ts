@@ -73,7 +73,7 @@ export const environment: ValtimoConfig = {
   defaultDefinitionTable: defaultDefinitionColumns,
   caseFileSizeUploadLimitMB: window['env']['caseFileSizeUploadLimitMB'] || 5,
   featureToggles: {
-    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] !== 'false',
+    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] === 'true',
     showUserNameInTopBar: true,
     disableCaseCount: false,
     experimentalDmnEditing: true,
