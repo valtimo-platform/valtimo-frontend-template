@@ -12,4 +12,7 @@
   window['env']['keycloakLogoutRedirectUri'] = '${KEYCLOAK_LOGOUT_REDIRECT_URI}';
   window['env']['whiteListedDomain'] = '${WHITELISTED_DOMAIN}';
   window['env']['openZaakCatalogusId'] = '${OPENZAAK_CATALOGUS_ID}';
+  window['env']['caseFileSizeUploadLimitMB'] = '${CASE_FILE_SIZE_UPLOAD_LIMIT_MB}';
+  window['env']['featureToggles'] = window['env']['featureToggles'] || {};
+  window['env']['featureToggles']['enableObjectManagement'] = '${ENABLE_OBJECT_MANAGEMENT}';
 })(this);

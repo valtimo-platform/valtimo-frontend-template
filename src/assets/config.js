@@ -11,4 +11,7 @@
   window['env']['keycloakRedirectUri'] = undefined;
   window['env']['keycloakLogoutRedirectUri'] = undefined;
   window['env']['whiteListedDomain'] = undefined;
+  window['env']['caseFileSizeUploadLimitMB'] = undefined;
+  window['env']['featureToggles'] = window['env']['featureToggles'] || {};
+  window['env']['featureToggles']['enableObjectManagement'] = undefined;
 })(this);

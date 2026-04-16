@@ -71,7 +71,9 @@ export const environment: ValtimoConfig = {
   },
   uploadProvider: UploadProvider.S3,
   defaultDefinitionTable: defaultDefinitionColumns,
+  caseFileSizeUploadLimitMB: window['env']['caseFileSizeUploadLimitMB'] || 5,
   featureToggles: {
+    enableObjectManagement: window['env']['featureToggles']?.['enableObjectManagement'] !== 'false',
     showUserNameInTopBar: true,
     disableCaseCount: false,
     experimentalDmnEditing: true,
