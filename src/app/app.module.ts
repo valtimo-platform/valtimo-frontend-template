@@ -10,6 +10,7 @@ import {environment} from '../environments/environment';
 import {SecurityModule} from '@valtimo/security';
 import {BuildingBlockManagementModule} from '@valtimo/building-block-management';
 import {TeamsModule} from '@valtimo/teams';
+import {AdminSettingsModule} from '@valtimo/admin-settings';
 import {
   BpmnJsDiagramModule,
   MenuModule,
@@ -101,6 +102,7 @@ export function tabsFactory() {
   imports: [
     AccessControlManagementModule,
     AccountModule,
+    AdminSettingsModule,
     AnalyseModule,
     AppRoutingModule,
     BootstrapModule,

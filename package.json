@@ -31,6 +31,7 @@
     "@valtimo/access-control": "13.28.0",
     "@valtimo/access-control-management": "13.28.0",
     "@valtimo/account": "13.28.0",
+    "@valtimo/admin-settings": "13.28.0",
     "@valtimo/analyse": "13.28.0",
     "@valtimo/bootstrap": "13.28.0",
     "@valtimo/building-block-management": "13.28.0",
