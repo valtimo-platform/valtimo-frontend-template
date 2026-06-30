@@ -1,0 +1,187 @@
+name: Sync template from monorepo
+
+# Regenerates this frontend template from the Valtimo monorepo for a given
+# release, then tags it so valtimo-configurator can `git clone --branch <version>`.
+# This does not publish anything itself — it syncs to (and tags) a released
+# monorepo version; the monorepo pipeline does the actual releasing.
+#
+# The monorepo (valtimo-platform/valtimo) is the single source of truth for the
+# application's code and configuration. This workflow:
+#   1. checks out the public monorepo at the release tag (no token required),
+#   2. copies frontend/apps/<EDITION>/src/{app,assets,environments} over this repo,
+#   3. mirrors the edition's production fileReplacements from the monorepo
+#      angular.json (so the dev/prod app-plugins + environment swap matches),
+#   4. pins @valtimo/* to the release version and @valtimo-plugins/* from the
+#      monorepo's release-plugins.json,
+#   5. verifies it builds, commits to THIS repo (its own GITHUB_TOKEN) and tags
+#      <version>.
+#
+# It does NOT build or push a Docker image: the monorepo pipeline already builds
+# and publishes the standard ritense/* images. This template exists only as the
+# plugin-injection baseline that valtimo-configurator clones and builds from.
+#
+# NOTE: only build infrastructure stays maintained in this repo (angular.json,
+# tsconfig, main.ts, package.json's non-@valtimo deps). The build step below
+# fails the run if the synced source imports a @valtimo module that is not
+# declared, so dependency drift is caught rather than silently shipped.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Valtimo release version to sync (e.g. 13.34.0)'
+        required: true
+      monorepo_ref:
+        description: 'Monorepo git ref to sync from (default: the <version> tag)'
+        required: false
+        default: ''
+
+env:
+  # Monorepo apps/ subdirectory for this edition: gzac | valtimo | evenementenvergunning
+  EDITION: valtimo
+  MONOREPO: valtimo-platform/valtimo
+  VERSION: ${{ inputs.version }}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout template (self)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve refs
+        id: refs
+        run: |
+          set -euo pipefail
+          if [ -z "${VERSION}" ]; then
+            echo "::error::No version supplied."
+            exit 1
+          fi
+          REF="${{ inputs.monorepo_ref }}"
+          [ -z "${REF}" ] && REF="${VERSION}"
+          echo "monorepo_ref=${REF}" >> "$GITHUB_OUTPUT"
+          echo "template_tag=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout monorepo (public, read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.MONOREPO }}
+          ref: ${{ steps.refs.outputs.monorepo_ref }}
+          path: .monorepo
+          fetch-depth: 1
+
+      - name: Sync application source + config from monorepo
+        run: |
+          set -euo pipefail
+          APP=".monorepo/frontend/apps/${EDITION}"
+          if [ ! -d "${APP}/src" ]; then
+            echo "::error::${APP}/src not found in monorepo@${{ steps.refs.outputs.monorepo_ref }}"
+            exit 1
+          fi
+          # App code, assets and environments are the source of truth in the monorepo.
+          # Build infrastructure (main.ts, polyfills, index.html, tsconfig, styles) is
+          # template-owned and intentionally NOT overwritten.
+          for d in app assets environments; do
+            if [ -d "${APP}/src/${d}" ]; then
+              rm -rf "src/${d}"
+              cp -a "${APP}/src/${d}" "src/${d}"
+              echo "Synced src/${d}"
+            fi
+          done
+
+          # Pin all @valtimo/* libraries to the release version.
+          sed -r -i 's#("@valtimo/[a-z0-9_-]+": *")[^"]*"#\1'"${VERSION}"'"#' package.json
+
+          # Pin @valtimo-plugins/* from the monorepo's release-plugins.json (only
+          # those already declared in this template's package.json).
+          if [ -f ".monorepo/frontend/release-plugins.json" ]; then
+            node -e '
+              const fs = require("fs");
+              const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+              const plugins = JSON.parse(fs.readFileSync(".monorepo/frontend/release-plugins.json", "utf8"));
+              for (const [name, version] of Object.entries(plugins)) {
+                if (pkg.dependencies && Object.prototype.hasOwnProperty.call(pkg.dependencies, name)) {
+                  pkg.dependencies[name] = version;
+                }
+              }
+              fs.writeFileSync("package.json", JSON.stringify(pkg, null, 2) + "\n");
+            '
+          fi
+
+          # Mirror the edition production fileReplacements from the monorepo angular.json,
+          # rewriting "apps/<EDITION>/" paths to this standalone repo's layout.
+          node -e '
+            const fs = require("fs");
+            const ed = process.env.EDITION;
+            const prefix = "apps/" + ed + "/";
+            const mono = JSON.parse(fs.readFileSync(".monorepo/frontend/angular.json", "utf8"));
+            const tpl = JSON.parse(fs.readFileSync("angular.json", "utf8"));
+            const buildOf = (p) => p && (p.architect && p.architect.build || p.targets && p.targets.build);
+            const findFR = (j) => {
+              for (const p of Object.values(j.projects || {})) {
+                const b = buildOf(p);
+                const fr = b && b.configurations && b.configurations.production && b.configurations.production.fileReplacements;
+                if (fr && fr.some((f) => (f.replace || "").startsWith(prefix))) return fr;
+              }
+              return null;
+            };
+            let fr = findFR(mono);
+            const proj = Object.values(tpl.projects)[0];
+            const b = buildOf(proj);
+            if (!b) { console.log("No build target in template angular.json; skipping fileReplacements."); process.exit(0); }
+            b.configurations = b.configurations || {};
+            b.configurations.production = b.configurations.production || {};
+            if (fr) {
+              fr = fr.map((f) => ({
+                replace: (f.replace || "").replace(prefix, ""),
+                with: (f.with || "").replace(prefix, ""),
+              }));
+              b.configurations.production.fileReplacements = fr;
+              console.log("Set fileReplacements:", JSON.stringify(fr));
+            } else {
+              delete b.configurations.production.fileReplacements;
+              console.log("No edition fileReplacements in monorepo for " + ed + "; cleared.");
+            }
+            fs.writeFileSync("angular.json", JSON.stringify(tpl, null, 2) + "\n");
+          '
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify build against published libraries
+        run: |
+          npm install
+          npm run build
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+
+      - name: Commit, tag and push
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf .monorepo
+          git add -A
+          # Never commit build output or dependencies.
+          git reset -q -- deployment dist node_modules 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No source changes to commit."
+          else
+            git commit -m "Sync from monorepo for Valtimo ${VERSION}"
+            git push
+          fi
+          TAG="${{ steps.refs.outputs.template_tag }}"
+          if git ls-remote --tags origin "refs/tags/${TAG}" | grep -q "${TAG}"; then
+            echo "::warning::Tag ${TAG} already exists on origin; leaving it untouched."
+          else
+            git tag "${TAG}"
+            git push origin "${TAG}"
+            echo "Tagged ${TAG}"
+          fi
