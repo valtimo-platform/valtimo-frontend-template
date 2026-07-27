@@ -103,6 +103,7 @@
           "defaultConfiguration": "",
           "configurations": {
             "production": {
+              "outputHashing": "all",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
